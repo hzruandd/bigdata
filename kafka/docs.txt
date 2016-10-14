@@ -1,0 +1,12 @@
+Kafka集群文档.pdf: http://www.open-open.com/doc/view/5b22776b363943b5aef2f61fb2ba84ab
+
+Spark技术内幕.pdf:
+http://www.open-open.com/doc/view/e7a91a49ad154a78b760326514b14856
+
+Kafka实战－Flume到Kafka:
+http://www.open-open.com/lib/view/open1435884136903.html
+
+高可用Hadoop平台－Flume
+NG实战图解篇:http://www.cnblogs.com/smartloli/p/4468708.html
+
+https://cwiki.apache.org/confluence/display/KAFKA/Clients#Clients-Python

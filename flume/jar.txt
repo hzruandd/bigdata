@@ -1,0 +1,25 @@
+http://mvnrepository.com/artifact/org.apache.hadoop/hadoop-common
+http://mvnrepository.com/artifact/org.apache.hadoop/hadoop-common/2.5.2
+
+http://mvnrepository.com/artifact/org.apache.hadoop/hadoop-hdfs/2.5.2
+
+
+http://mvnrepository.com/artifact/org.apache.hadoop/hadoop-mapreduce-client-core
+http://mvnrepository.com/artifact/org.apache.hadoop/hadoop-mapreduce-client-core/2.5.2
+
+
+
+commons-configuration-1.6.jar
+hadoop-auth-2.5.2.jar
+hadoop-common-2.5.2.jar
+hadoop-hdfs-2.5.2.jar
+hadoop-mapreduce-client-core-2.5.2.jar
+
+
+
+解决 Unable to load native-hadoop library for your platform:
+http://blog.csdn.net/jack85986370/article/details/51902871
+
+#org.apache.hadoop.security.AccessControlException: Permission denied:
+#user=root, access=WRITE, inode="/":hdfs:supergroup:drwxr-xr-x
+http://blog.csdn.net/Camu7s/article/details/50231625
