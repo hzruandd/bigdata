@@ -141,3 +141,6 @@ k、offset是对每个partition而言的，partition越多，查询offset就越�
 i、partition的数量是可以动态增加的（只能加不能减）。
 
 建议的做法是，如果是3个broker的集群，有5个消费者，那么建议partition的数量是15，也就是broker和consumer数量的最小公倍数。当然，也可以是一个大于消费者的broker数量的倍数，比如6或者9，还请读者自行根据实际环境裁定。
+
+[基于Flume的美团日志收集系统(一)架构和设计](http://tech.meituan.com/mt-log-system-arch.html)
+[基于Flume的美团日志收集系统(二)改进和优化](http://tech.meituan.com/mt-log-system-optimization.html)
