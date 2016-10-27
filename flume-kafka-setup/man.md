@@ -145,3 +145,4 @@ i、partition的数量是可以动态增加的（只能加不能减）。
 [基于Flume的美团日志收集系统(一)架构和设计](http://tech.meituan.com/mt-log-system-arch.html)
 [基于Flume的美团日志收集系统(二)改进和优化](http://tech.meituan.com/mt-log-system-optimization.html)
 [Kafka集群管理工具](http://www.tuicool.com/articles/ZzQbI3e)
+[Performance Test](https://engineering.linkedin.com/kafka/benchmarking-apache-kafka-2-million-writes-second-three-cheap-machines)
