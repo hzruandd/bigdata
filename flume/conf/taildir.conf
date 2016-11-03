@@ -1,0 +1,12 @@
+a1.sources = r1
+a1.channels = c1
+a1.sources.r1.type = TAILDIR
+a1.sources.r1.channels = c1
+a1.sources.r1.positionFile = /var/log/flume/taildir_position.json
+a1.sources.r1.filegroups = f1 f2
+a1.sources.r1.filegroups.f1 = /var/log/test1/example.log
+a1.sources.r1.headers.f1.headerKey1 = value1
+a1.sources.r1.filegroups.f2 = /var/log/test2/.*log.*
+a1.sources.r1.headers.f2.headerKey1 = value2
+a1.sources.r1.headers.f2.headerKey2 = value2-2
+a1.sources.r1.fileHeader = true
