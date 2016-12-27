@@ -39,4 +39,4 @@ curl -XDELETE "10.130.3.102:9200/${index_name}/_query?pretty" -d "
         }
 }"
 
-echo "ok"
+echo "-------------ok----------------"
