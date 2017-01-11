@@ -3,16 +3,21 @@
 kafka是一个高吞吐量分布式消息系统，并且提供了持久化。其高性能的有两个重要特点：
 
 利用了磁盘连续读写性能远远高于随机读写的特点；
+
 并发，将一个topic拆分多个partition。
 
-要充分发挥kafka的性能，就需要满足这两个条件
+要充分发挥kafka的性能，就需要满足这两个条件:
 
-kafka读写的单位是partition，因此，将一个topic拆分为多个partition可以提高吞吐量。但是，这里有个前提，就是不同partition需 要位于不同的磁盘（可以在同一个机器）。如果多个partition位于同一个磁盘，那么意味着有多个进程同时对一个磁盘的多个文 件进行读写，使得操作系统会对磁盘读写进行频繁调度，也就是破坏了磁盘读写的连续性。
+
+kafka读写的单位是partition，因此，将一个topic拆分为多个partition可以提高吞吐量。但是，这里有个前提，就是不同partition需 要位于不同的磁盘（可以
+在同一个机器）。如果多个partition位于同一个磁盘，那么意味着有多个进程同时对一个磁盘的多个文 件进行读写，使得操作系统会对磁盘读写进行频繁调度，也就是破坏了磁盘读写的连续性。
 
 在linkedlin的测试中，每台机器就加载了6个磁盘，并且不做raid，就是为了充分利用多磁盘并发读写，又保证每个磁盘连续读写 的特性。
 
 具体配置上，是将不同磁盘的多个目录配置到broker的log.dirs，例如 
+
 log.dirs=/disk1/kafka-logs,/disk2/kafka-logs,/disk3/kafka-logs 
+
 kafka会在新建partition的时候，将新partition分布在partition最少的目录上，因此，一般不能将同一个磁盘的多个目录设置到log.dirs
 
 同一个ConsumerGroup内的Consumer和Partition在同一时间内必须保证是一对一的消费关系
