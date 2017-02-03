@@ -1,5 +1,7 @@
 #最佳实践
 
+[自动生成grok表达式网站](http://grokconstructor.appspot.com/ )
+
 [调试自己的 grok 表达式](http://grokdebug.herokuapp.com/)
 
 [Grok 支持把预定义的 grok 表达式 写入到文件中，官方提供的预定义 grok
@@ -31,7 +33,7 @@ syntax](https://github.com/kkos/oniguruma/blob/master/doc/RE)
 一样也需要单独指定，具体写法是在表达式开始位置加 (?m) 标记。如下所示：
 
     match => {
-    "message" => "(?m)\s+(?<request_time>\d+(?:\.\d+)?)\s+"
+        "message" => "(?m)\s+(?<request_time>\d+(?:\.\d+)?)\s+"
     }
 
 #多项选择
@@ -43,13 +45,11 @@ syntax](https://github.com/kkos/oniguruma/blob/master/doc/RE)
 这种方式书写的，所以其实现在传递 Array 值给 match参数也完全没问题。所以，这里其实可以传递多个正则来匹配同一个字段：
 
     match => [
-    "message", "(?<request_time>\d+(?:\.\d+)?)",
-    "message", "%{SYSLOGBASE} %{DATA:message}",
-    "message", "(?m)%{WORD}"
+        "message", "(?<request_time>\d+(?:\.\d+)?)",
+        "message", "%{SYSLOGBASE} %{DATA:message}",
+        "message", "(?m)%{WORD}"
     ]
 
-#自动生成grok表达式网站
-#http://grokconstructor.appspot.com/ 
 
     input {
         file {
@@ -75,12 +75,14 @@ syntax](https://github.com/kkos/oniguruma/blob/master/doc/RE)
 
     output {
         elasticsearch {
-        host =>"xx-management"
-        protocol =>"http"
-        workers => 5
-        template_overwrite => true
+            host =>"xx-management"
+            protocol =>"http"
+            workers => 5
+            template_overwrite => true
         }
-        stdout { codec=> rubydebug }
+        stdout { 
+            codec=> rubydebug 
+        }
     }
 
 #grok支持的配置项
@@ -151,6 +153,3 @@ timeout_millis:
 
 Attempt to terminate regexps after this amount of time. This applies per
 pattern if multiple patterns are applied This will never timeout early, but may take a little longer to timeout. Actual timeout is approximate based on a 250ms quantization. Set to 0 to disable timeouts
-
-
-
