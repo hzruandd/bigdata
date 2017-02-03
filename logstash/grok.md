@@ -91,7 +91,6 @@ add_field:
 
 If this filter is successful, add any arbitrary fields to this event. Field names can be dynamic and include parts of the event using the %{field}.
 
-# You can also add multiple fields at once
     filter {
      grok {
         add_field => {
@@ -112,6 +111,7 @@ match:
 A hash of matches of field => value
 
 For example:
+
     filter {
         grok { match => { "message" => [ "Duration: %{NUMBER:duration}", "Speed:%{NUMBER:speed}" ] } }
     } 
