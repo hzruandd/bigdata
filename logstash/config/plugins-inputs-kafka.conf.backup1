@@ -1,0 +1,36 @@
+input {
+	kafka {
+		bootstrap_servers => "10.8.6.170:9092"
+		client_id => "logstash"
+        	codec => multiline {
+            			pattern => "交易耗时"
+            			negate => true
+            			what => "previous"
+        }
+		group_id => "logstash"
+		topics => ["demo-afa0", "demo-afe"]
+
+	}
+
+}
+
+
+filter {
+    grok {
+      match => { "message" => "%{COMBINEDAPACHELOG}" }
+      add_field => [ "received_at", "%{@timestamp}" ]
+      add_field => [ "recevied_from", "%{host}" ]
+    }
+    date {
+      match => [ "timestamp" , "dd/MMM/yyyy:HH:mm:ss Z" ]
+    }
+}
+
+output{
+  elasticsearch { 
+		hosts => ["10.8.6.170:9200"] 
+		index => "logstash-get-from-kafka%{+YYYY.MM.dd}"
+        	document_type => "kafka2logstash"
+	}
+  stdout { codec => plain}
+}

@@ -1,0 +1,34 @@
+input {
+  file {
+    path => ["/tmp/*.log", "/var/log/message"]
+    exclude => [".*", "*.gz", "*.zip", "do-not-deal-file.log"]
+    codec => multiline {
+            pattern => "结束交易"
+            negate => true
+            what => "previous"
+        }
+  }
+}
+
+filter {
+  if [path] =~ "access" {
+    mutate { replace => { type => "apache_access" } }
+    grok {
+      match => { "message" => "%{COMBINEDAPACHELOG}" }
+      add_field => [ "received_at", "%{@timestamp}" ]
+      add_field => [ "recevied_from", "%{host}" ]
+    }
+    date {
+      match => [ "timestamp" , "dd/MMM/yyyy:HH:mm:ss Z" ]
+    }
+  } else if [path] =~ "error" {
+    mutate { replace => { type => "apache_error" } }
+  } else {
+    mutate { replace => { type => "random_logs" } }
+  }
+}
+
+output {
+  #elasticsearch { hosts => ["10.8.6.170:9200"] }
+  stdout { codec => rubydebug }
+}
