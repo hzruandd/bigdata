@@ -115,5 +115,6 @@ PUT /err/
                     "index": "not_analyzed"
                 } 
             }   
-        }        }   
+        }        
+    }   
 }  
